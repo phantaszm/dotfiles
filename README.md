@@ -4,7 +4,7 @@
 
 pathogen works with vim pack system
 
-# vim pack system
+## vim pack system
 
 pack/*/start/$plugin
 
@@ -14,3 +14,9 @@ pack/*/opt/$plugin
 
 - manually loaded plugins
 - `:packadd $plugin`
+
+### management
+
+* Add plugin - `git submodule add $source pack/$dir/start/$plugin`
+* Update plugins - `git submodule update --remote --merge`
+* Remember to commit
