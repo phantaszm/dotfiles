@@ -16,3 +16,18 @@
 [submodule "pack/interface/start/airline"]
 	path = pack/interface/start/airline
 	url = https://github.com/vim-airline/vim-airline
+[submodule "pack/completion/start/delimitmate"]
+	path = pack/completion/start/delimitmate
+	url = https://github.com/raimondi/delimitmate
+[submodule "pack/completion/start/supertab"]
+	path = pack/completion/start/supertab
+	url = https://github.com/ervandew/supertab
+[submodule "pack/completion/start/endwise"]
+	path = pack/completion/start/endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "pack/completion/start/deoplete"]
+	path = pack/completion/start/deoplete
+	url = https://github.com/shougo/deoplete.nvim
+[submodule "pack/completion/start/surround"]
+	path = pack/completion/start/surround
+	url = https://github.com/tpope/vim-surround

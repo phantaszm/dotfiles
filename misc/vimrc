@@ -1,6 +1,7 @@
 execute pathogen#infect()
-let g:neocomplete#enable_at_startup = 1
 
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 " Automatically cd into the directory that the file is in
 set autochdir
