@@ -1,0 +1,9 @@
+[submodule "pack/integrations/start/nerdtree"]
+	path = pack/integrations/start/nerdtree
+	url = https://github.com/preservim/nerdtree
+[submodule "pack/integrations/start/fugitive"]
+	path = pack/integrations/start/fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "pack/integrations/start/ack"]
+	path = pack/integrations/start/ack
+	url = https://github.com/mileszs/ack.vim

@@ -93,3 +93,8 @@ if filereadable(expand("~/.vimrc_background"))
     let base16colorspace=256
     source ~/.vimrc_background
 endif
+
+"ack using ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
