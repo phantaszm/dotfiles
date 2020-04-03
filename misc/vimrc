@@ -1,7 +1,11 @@
 execute pathogen#infect()
 
-" Use deoplete.
+" auto enable
+" deoplete
 let g:deoplete#enable_at_startup = 1
+" indent guides
+let g:indent_guides_enable_on_vim_startup = 1
+
 
 " Automatically cd into the directory that the file is in
 set autochdir
@@ -99,3 +103,4 @@ endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
