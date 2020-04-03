@@ -7,3 +7,12 @@
 [submodule "pack/integrations/start/ack"]
 	path = pack/integrations/start/ack
 	url = https://github.com/mileszs/ack.vim
+[submodule "pack/interface/start/ctrlp"]
+	path = pack/interface/start/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim
+[submodule "pack/interface/start/tabular"]
+	path = pack/interface/start/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "pack/interface/start/airline"]
+	path = pack/interface/start/airline
+	url = https://github.com/vim-airline/vim-airline
