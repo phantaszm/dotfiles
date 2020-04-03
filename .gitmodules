@@ -40,3 +40,18 @@
 [submodule "pack/code/start/base16"]
 	path = pack/code/start/base16
 	url = https://github.com/chriskempson/base16-vim
+[submodule "pack/language/syntastic"]
+	path = pack/language/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "pack/language/markdown"]
+	path = pack/language/markdown
+	url = https://github.com/tpope/vim-markdown
+[submodule "pack/language/json"]
+	path = pack/language/json
+	url = https://github.com/elzr/vim-json
+[submodule "pack/language/flavored-markdown"]
+	path = pack/language/flavored-markdown
+	url = https://github.com/jtratner/vim-flavored-markdown
+[submodule "pack/language/ansible"]
+	path = pack/language/ansible
+	url = https://github.com/pearofducks/ansible-vim
