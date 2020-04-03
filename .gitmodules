@@ -25,9 +25,6 @@
 [submodule "pack/completion/start/endwise"]
 	path = pack/completion/start/endwise
 	url = https://github.com/tpope/vim-endwise
-[submodule "pack/completion/start/deoplete"]
-	path = pack/completion/start/deoplete
-	url = https://github.com/shougo/deoplete.nvim
 [submodule "pack/completion/start/surround"]
 	path = pack/completion/start/surround
 	url = https://github.com/tpope/vim-surround
@@ -55,3 +52,6 @@
 [submodule "pack/language/ansible"]
 	path = pack/language/ansible
 	url = https://github.com/pearofducks/ansible-vim
+[submodule "pack/completion/start/neocomplete"]
+	path = pack/completion/start/neocomplete
+	url = https://github.com/shougo/neocomplete

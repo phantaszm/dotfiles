@@ -18,6 +18,6 @@ pack/*/opt/$plugin
 ### management
 
 * Add plugin - `git submodule add $source pack/$dir/start/$plugin`
-* Remove plugin - `git submodule deinit pack/$dir/start/$plugin && git rm pack/$dir/start/$plugin && rm -rf .git/modules/pacl/$dir/start/$plugin`
+* Remove plugin - `git submodule deinit pack/$dir/start/$plugin && git rm pack/$dir/start/$plugin && rm -rf .git/modules/pack/$dir/start/$plugin`
 * Update plugins - `git submodule update --remote --merge`
 * Remember to commit
