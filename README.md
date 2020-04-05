@@ -21,3 +21,4 @@ pack/*/opt/$plugin
 * Remove plugin - `git submodule deinit pack/$dir/start/$plugin && git rm pack/$dir/start/$plugin && rm -rf .git/modules/pack/$dir/start/$plugin`
 * Update plugins - `git submodule update --remote --merge`
 * Remember to commit
+* Add docs - `vim -u NONE -c "helptags pack/$dir/start/$plugin/doc" -c q`

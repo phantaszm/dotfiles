@@ -38,9 +38,9 @@ set hlsearch
 set background=dark
 set smartcase
 
-" lets files determine the formatting
-set modeline
-set modelines=5
+" lets files determine the formatting. Keep disabled for security
+"set modeline
+"set modelines=5
 
 syntax on
 
@@ -118,3 +118,5 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+"NERDTree shortcut
+map <C-n> :NERDTreeToggle<CR>
