@@ -58,3 +58,12 @@
 [submodule "pack/integrations/start/ranger"]
 	path = pack/integrations/start/ranger
 	url = https://github.com/francoiscabrol/ranger.vim
+[submodule "pack/commands/start/vim-easy-align"]
+	path = pack/commands/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
+[submodule "pack/language/start/vim-flavored-markdown"]
+	path = pack/language/start/vim-flavored-markdown
+	url = https://github.com/jtratner/vim-flavored-markdown
+[submodule "pack/language/start/syntastic"]
+	path = pack/language/start/syntastic
+	url = https://github.com/scrooloose/syntastic
