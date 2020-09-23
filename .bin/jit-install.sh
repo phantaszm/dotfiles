@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ ! -d "$HOME/.dotfiles" ]; then
-  git clone --bare git@github.com:phantaszm/dotfiles.git "$HOME"/.dotfiles
+  git clone --bare https://github.com/phantaszm/dotfiles.git "$HOME"/.dotfiles
 else
   echo "dotfiles repo already exists"
 fi
@@ -19,3 +19,5 @@ function jit {
 jit checkout
 jit config status.showUntrackedFiles no
 jit submodule update --init --recursive
+
+echo "Install fish modules and set theme for a nicer experience"
