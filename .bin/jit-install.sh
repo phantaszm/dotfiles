@@ -20,4 +20,9 @@ jit checkout
 jit config status.showUntrackedFiles no
 jit submodule update --init --recursive
 
-echo "Install fish modules and set theme for a nicer experience"
+echo '''===
+For a nicer experience:
+  * set shell theme using `theme_name` like `base16-tomorrow-night`
+  * install fish modules with `fisher`,
+  * install tmux theme using `<PREFIX>+I`
+'''
