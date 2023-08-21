@@ -23,6 +23,6 @@ jit submodule update --init --recursive
 echo '''===
 For a nicer experience:
   * set shell theme using `theme_name` like `base16-tomorrow-night`
-  * install fish modules with `fisher`,
+  * install fish modules with `fisher update`,
   * install tmux theme using `<PREFIX>+I`
 '''
