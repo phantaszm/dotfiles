@@ -12,3 +12,5 @@ abbr -a -g gffs git flow feature start
 abbr -a -g gfff git flow feature finish #(git branch --show-current | awk -F'/' '{print $2}')
 abbr -a -g gfhs git flow hotfix start
 abbr -a -g gfhf git flow hotfix finish #(git branch --show-current | awk -F'/' '{print $2}')
+abbr -a -g gfrs git flow release start
+abbr -a -g gfrf git flow release finish #(git branch --show-current | awk -F'/' '{print $2}')
