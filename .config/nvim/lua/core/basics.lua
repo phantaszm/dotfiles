@@ -18,3 +18,13 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.hlsearch = true
+
+-- options for vimdiff
+vim.opt.diffopt = "filler"
+vim.opt.diffopt = vim.opt.diffopt + "iwhite"
+
+-- nice folds
+vim.opt.foldmethod = "marker"
+
+-- nav options
+vim.opt.autochdir = true
