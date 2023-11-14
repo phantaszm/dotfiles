@@ -27,3 +27,6 @@ keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 -- trigger replace for word under cursor
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- just for fun
+keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
