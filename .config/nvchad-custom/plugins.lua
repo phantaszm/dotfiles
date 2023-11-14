@@ -12,16 +12,20 @@ local plugins = {
       require "custom.configs.lspconfig"
     end,
   },
-   {
-   "williamboman/mason.nvim",
-   opts = {
+  {
+    "williamboman/mason.nvim",
+    opts = {
       ensure_installed = {
         "lua-language-server",
         "terraform-ls",
         "python-lsp-server",
       },
     },
-  }
+  },
+  {
+    'eandrju/cellular-automaton.nvim',
+    cmd = "CellularAutomaton"
+  },
 }
 
 return plugins
