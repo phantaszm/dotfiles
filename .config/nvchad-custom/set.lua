@@ -4,6 +4,9 @@ local opt = vim.opt
 opt.background = "dark"
 opt.showcmd = true
 opt.colorcolumn = "80"
+opt.wrap = false
+opt.termguicolors = true
+opt.scrolloff = 9  -- maintain minimum x lines from top/bottom
 
 -- spaces for tabs
 opt.tabstop = 2
@@ -20,7 +23,7 @@ opt.relativenumber = true
 opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
-opt.hlsearch = true
+opt.hlsearch = false
 
 -- options for vimdiff
 opt.diffopt = "filler"
@@ -34,3 +37,8 @@ opt.autochdir = true
 
 -- misc
 opt.undofile = false
+
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
