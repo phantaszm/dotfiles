@@ -17,8 +17,10 @@ local plugins = {
     opts = {
       ensure_installed = {
         "lua-language-server",
-        "terraform-ls",
         "python-lsp-server",
+        "marksman",
+        "bash-language-server",
+        "terraform-ls",
       },
     },
   },
