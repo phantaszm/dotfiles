@@ -21,6 +21,7 @@ local plugins = {
         "marksman",
         "bash-language-server",
         "terraform-ls",
+        "yaml-language-server",
       },
     },
   },
