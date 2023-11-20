@@ -26,7 +26,15 @@ local plugins = {
     },
   },
   {
-    'eandrju/cellular-automaton.nvim',
+    "tpope/vim-fugitive",
+    lazy = false,
+    cmd = "Git",
+    config = function()
+      require "custom.configs.fugitive"
+    end,
+  },
+  {
+    "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton"
   },
 }
