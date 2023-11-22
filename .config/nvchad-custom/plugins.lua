@@ -37,6 +37,13 @@ local plugins = {
     "eandrju/cellular-automaton.nvim",
     cmd = "CellularAutomaton"
   },
+  {
+    "lewis6991/spaceless.nvim",
+    lazy = false,
+    config = function()
+      require'spaceless'.setup()
+    end
+  },
 }
 
 return plugins
