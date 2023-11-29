@@ -7,6 +7,7 @@ opt.colorcolumn = "80"
 opt.wrap = false
 opt.termguicolors = true
 opt.scrolloff = 9  -- maintain minimum x lines from top/bottom
+opt.invlist -- show invisible characters
 
 -- spaces for tabs
 opt.tabstop = 2
