@@ -1,75 +1,15 @@
 [submodule ".config/base16-shell"]
 	path = .config/base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
-[submodule "pack/integrations/start/nerdtree"]
-	path = .vim/pack/integrations/start/nerdtree
-	url = https://github.com/preservim/nerdtree
-[submodule "pack/integrations/start/fugitive"]
-	path = .vim/pack/integrations/start/fugitive
-	url = https://github.com/tpope/vim-fugitive
-[submodule "pack/integrations/start/ack"]
-	path = .vim/pack/integrations/start/ack
-	url = https://github.com/mileszs/ack.vim
-[submodule "pack/interface/start/ctrlp"]
-	path = .vim/pack/interface/start/ctrlp
-	url = https://github.com/ctrlpvim/ctrlp.vim
-[submodule "pack/interface/start/tabular"]
-	path = .vim/pack/interface/start/tabular
-	url = https://github.com/godlygeek/tabular
-[submodule "pack/interface/start/airline"]
-	path = .vim/pack/interface/start/airline
-	url = https://github.com/vim-airline/vim-airline
-[submodule "pack/completion/start/delimitmate"]
-	path = .vim/pack/completion/start/delimitmate
-	url = https://github.com/raimondi/delimitmate
-[submodule "pack/completion/start/supertab"]
-	path = .vim/pack/completion/start/supertab
-	url = https://github.com/ervandew/supertab
-[submodule "pack/completion/start/endwise"]
-	path = .vim/pack/completion/start/endwise
-	url = https://github.com/tpope/vim-endwise
-[submodule "pack/completion/start/surround"]
-	path = .vim/pack/completion/start/surround
-	url = https://github.com/tpope/vim-surround
-[submodule "pack/code/start/vim-colors-solarized"]
-	path = .vim/pack/code/start/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized
-[submodule "pack/code/start/indent-guides"]
-	path = .vim/pack/code/start/indent-guides
-	url = https://github.com/nathanaelkane/vim-indent-guides
-[submodule "pack/code/start/base16"]
-	path = .vim/pack/code/start/base16
-	url = https://github.com/chriskempson/base16-vim
 [submodule "pack/language/syntastic"]
 	path = pack/language/start/syntastic/
 	url = https://github.com/scrooloose/syntastic
-[submodule "pack/language/markdown"]
-	path = .vim/pack/language/start/markdown
-	url = https://github.com/tpope/vim-markdown
-[submodule "pack/language/json"]
-	path = .vim/pack/language/start/json
-	url = https://github.com/elzr/vim-json
 [submodule "pack/language/flavored-markdown"]
 	path = pack/language/start/flavored-markdown/
 	url = https://github.com/jtratner/vim-flavored-markdown
-[submodule "pack/language/ansible"]
-	path = .vim/pack/language/start/ansible
-	url = https://github.com/pearofducks/ansible-vim
-[submodule "pack/completion/start/neocomplete"]
-	path = .vim/pack/completion/start/neocomplete
-	url = https://github.com/shougo/neocomplete
-[submodule "pack/integrations/start/ranger"]
-	path = .vim/pack/integrations/start/ranger
-	url = https://github.com/francoiscabrol/ranger.vim
-[submodule "pack/commands/start/vim-easy-align"]
-	path = .vim/pack/commands/start/vim-easy-align
-	url = https://github.com/junegunn/vim-easy-align.git
-[submodule "pack/language/start/vim-flavored-markdown"]
-	path = .vim/pack/language/start/vim-flavored-markdown
-	url = https://github.com/jtratner/vim-flavored-markdown
-[submodule "pack/language/start/syntastic"]
-	path = .vim/pack/language/start/syntastic
-	url = https://github.com/scrooloose/syntastic
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/NvChad/NvChad
