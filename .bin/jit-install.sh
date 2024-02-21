@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [ ! -d "$HOME/.dotfiles" ]; then
   git clone --bare https://github.com/phantaszm/dotfiles.git "$HOME"/.dotfiles
 else
