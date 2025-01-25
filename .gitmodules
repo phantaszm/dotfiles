@@ -12,4 +12,4 @@
 	url = https://github.com/tmux-plugins/tpm
 [submodule ".config/nvim"]
 	path = .config/nvim
-	url = https://github.com/NvChad/NvChad
+	url = https://github.com/NvChad/starter

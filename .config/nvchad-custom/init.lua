@@ -1,2 +1,2 @@
-require("custom.set")
-require("custom.remap")
+require("set")
+require("remap")
