@@ -1,3 +1,3 @@
 # Instructions
 
-Copy this into the **custom** dir of the nvchad repo
+Copy this into the **lua** dir of the nvchad starter repo
