@@ -2,7 +2,7 @@ local plugins = {
   { "mbbill/undotree",
     lazy = false,
     config = function()
-      require "custom.configs.undotree"
+      require "configs.undotree"
     end,
   },
   {
@@ -11,13 +11,13 @@ local plugins = {
     dependencies = {
       "nvimtools/none-ls.nvim",
       config = function()
-        require "custom.configs.null-ls"
+        require "configs.null-ls"
       end,
     },
 
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require('nvchad.configs.lspconfig').defaults()
+      require "configs.lspconfig"
     end,
   },
   {
@@ -40,7 +40,7 @@ local plugins = {
     lazy = false,
     cmd = "Git",
     config = function()
-      require "custom.configs.fugitive"
+      require "configs.fugitive"
     end,
   },
   {
