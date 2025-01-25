@@ -10,6 +10,3 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/NvChad/NvChad
