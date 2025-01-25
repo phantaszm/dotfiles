@@ -1,0 +1,5 @@
+--theme base16-tomorrow-night
+--background '#fff0'
+--shadow-color '#555'
+--shadow-blur-radius 30
+--no-window-controls

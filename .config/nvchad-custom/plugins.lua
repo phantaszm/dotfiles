@@ -7,6 +7,14 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
+
+    dependencies = {
+      "nvimtools/none-ls.nvim",
+      config = function()
+        require "custom.configs.null-ls"
+      end,
+    },
+
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
@@ -19,9 +27,11 @@ local plugins = {
         "lua-language-server",
         "python-lsp-server",
         "marksman",
-        "bash-language-server",
         "terraform-ls",
         "yaml-language-server",
+        "bash-language-server",
+        "beautysh",
+        "shellcheck",
       },
     },
   },
@@ -57,6 +67,23 @@ local plugins = {
     config = function()
       require('mini.align').setup()
     end,
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
   },
 }
 

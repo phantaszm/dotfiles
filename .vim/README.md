@@ -1,24 +1,21 @@
 # plugins
 
-## pathogen
-
-pathogen works with vim pack system
-
 ## vim pack system
 
-pack/*/start/$plugin
+auto loaded plugins
 
-- auto loaded plugins
+`pack/$category/start/$plugin`
 
-pack/*/opt/$plugin
+manually loaded plugins
 
-- manually loaded plugins
+`pack/$category/opt/$plugin`
+
 - `:packadd $plugin`
 
 ### management
 
-* Add plugin - `git submodule add $source pack/$dir/start/$plugin`
-* Remove plugin - `git submodule deinit pack/$dir/start/$plugin && git rm pack/$dir/start/$plugin && rm -rf .git/modules/pack/$dir/start/$plugin`
+* Add plugin - `git submodule add $source pack/$category/start/$plugin`
+* Remove plugin - `git submodule deinit pack/$category/start/$plugin && git rm pack/$category/start/$plugin && rm -rf .git/modules/pack/$category/start/$plugin`
 * Update plugins - `git submodule update --remote --merge`
 * Remember to commit
-* Add docs - `vim -u NONE -c "helptags pack/$dir/start/$plugin/doc" -c q`
+* Add docs - `vim -u NONE -c "helptags pack/$category/start/$plugin/doc" -c q`
