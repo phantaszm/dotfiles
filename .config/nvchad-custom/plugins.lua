@@ -11,7 +11,7 @@ local plugins = {
     dependencies = {
       "nvimtools/none-ls.nvim",
       config = function()
-        require "configs.null-ls"
+        require "configs.none-ls"
       end,
     },
 
