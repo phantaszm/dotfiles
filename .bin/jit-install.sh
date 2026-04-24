@@ -16,7 +16,7 @@ init_dotfiles() {
   fi
 
   echo "Cloning dotfiles repository..."
-  git clone --bare feature/claude "$DOTFILES_REPO" "$DOTFILES_DIR"
+  git clone --bare --branch feature/claude "$DOTFILES_REPO" "$DOTFILES_DIR"
 }
 
 backup_conflicting() {
