@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -xeuo pipefail
 
 DOTFILES_REPO="https://github.com/phantaszm/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
@@ -16,12 +16,12 @@ init_dotfiles() {
   fi
 
   echo "Cloning dotfiles repository..."
-  git clone --bare "$DOTFILES_REPO" "$DOTFILES_DIR"
+  git clone --bare feature/claude "$DOTFILES_REPO" "$DOTFILES_DIR"
 }
 
 backup_conflicting() {
   local conflicting
-  conflicting=$(jit checkout 2>&1 | awk '/^\s/{print $1}')
+  conflicting=$(jit checkout 2>&1 | awk '/^\s/{print $1}' || true)
 
   [[ -z "$conflicting" ]] && return 0
 
