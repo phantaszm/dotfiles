@@ -4,6 +4,7 @@ set -euo pipefail
 DOTFILES_REPO="https://github.com/phantaszm/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
 BACKUP_DIR="${HOME}/.dotfiles-backup"
+BRANCH="${1:-main}"
 
 jit() {
   git --git-dir="$DOTFILES_DIR" --work-tree="$HOME" "$@"
@@ -16,7 +17,7 @@ init_dotfiles() {
   fi
 
   echo "Cloning dotfiles repository..."
-  git clone --bare --branch feature/claude "$DOTFILES_REPO" "$DOTFILES_DIR"
+  git clone --bare --branch "$BRANCH" "$DOTFILES_REPO" "$DOTFILES_DIR"
 }
 
 backup_conflicting() {
@@ -52,4 +53,4 @@ For a nicer experience:
   * install tmux plugins using <PREFIX>+I'
 }
 
-main "$@"
+main
