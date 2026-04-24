@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -xeuo pipefail
+set -euo pipefail
 
 DOTFILES_REPO="https://github.com/phantaszm/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
