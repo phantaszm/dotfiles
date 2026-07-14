@@ -6,16 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **bare git dotfiles repo**. The repo itself lives at `~/.dotfiles`; configs are checked out directly into `$HOME`. There is no build step, no symlinking, and no package manager for the configs themselves.
 
-The `jit` command (fish function + installer alias) wraps `git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"` for day-to-day dotfiles management:
+The `dgit` command (fish function + installer alias) wraps `git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"` for day-to-day dotfiles management:
 
 ```bash
-jit status
-jit add .config/some/file
-jit commit -S -m "message"   # commits are GPG-signed
-jit push
+dgit status
+dgit add .config/some/file
+dgit commit -S -m "message"   # commits are GPG-signed
+dgit push
 ```
 
-When working in this source clone (`~/src/dotfiles`), use regular `git` — `jit` is only needed once the repo is deployed to `~/.dotfiles`.
+When working in this source clone (`~/src/dotfiles`), use regular `git` — `dgit` is only needed once the repo is deployed to `~/.dotfiles`.
 
 ## Branching Model
 
@@ -24,7 +24,7 @@ Git Flow is in use: `main`, `develop`, feature branches (`feature/*`), hotfix br
 ## Installation
 
 ```bash
-.bin/jit-install.sh   # clone bare repo to ~/.dotfiles, checkout to $HOME, init submodules
+.bin/dgit-install.sh   # clone bare repo to ~/.dotfiles, checkout to $HOME, init submodules
 ```
 
 Post-install (interactive, run in fish):

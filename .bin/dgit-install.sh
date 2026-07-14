@@ -6,7 +6,7 @@ DOTFILES_DIR="${HOME}/.dotfiles"
 BACKUP_DIR="${HOME}/.dotfiles-backup"
 BRANCH="${1:-main}"
 
-jit() {
+dgit() {
   git --git-dir="$DOTFILES_DIR" --work-tree="$HOME" "$@"
 }
 
@@ -22,7 +22,7 @@ init_dotfiles() {
 
 backup_conflicting() {
   local conflicting
-  conflicting=$(jit checkout 2>&1 | awk '/^\s/{print $1}' || true)
+  conflicting=$(dgit checkout 2>&1 | awk '/^\s/{print $1}' || true)
 
   [[ -z "$conflicting" ]] && return 0
 
@@ -38,13 +38,13 @@ backup_conflicting() {
 main() {
   init_dotfiles
 
-  if ! jit checkout 2>/dev/null; then
+  if ! dgit checkout 2>/dev/null; then
     backup_conflicting
-    jit checkout
+    dgit checkout
   fi
 
-  jit config status.showUntrackedFiles no
-  jit submodule update --init --recursive
+  dgit config status.showUntrackedFiles no
+  dgit submodule update --init --recursive
 
   echo '===
 For a nicer experience:
