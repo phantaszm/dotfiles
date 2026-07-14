@@ -4,7 +4,7 @@ This is a dotfiles repository using the [bare git repo pattern](https://www.atla
 
 ## Setup
 
-Run `.bin/jit-install.sh` to install. It clones the repo to `~/.dotfiles` and checks out configs to `$HOME`.
+Run `.bin/dgit-install.sh` to install. It clones the repo to `~/.dotfiles` and checks out configs to `$HOME`.
 
 Post-install steps:
 - Set fish theme: `theme_name base16-tomorrow-night`
@@ -22,9 +22,9 @@ Post-install steps:
 ## Key Commands
 
 ```bash
-# Using the dotfiles git alias (defined in jit-install.sh)
-jit status
-jit add .config/some/file
-jit commit -m "update"
-jit push
+# Using the dotfiles git alias (defined in dgit-install.sh)
+dgit status
+dgit add .config/some/file
+dgit commit -m "update"
+dgit push
 ```
