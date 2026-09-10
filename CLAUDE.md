@@ -43,7 +43,8 @@ from a host.
 |------|------|
 | Fish shell | `.config/fish/` |
 | Fish abbreviations (git shorts) | `.config/fish/conf.d/git-shorts.fish` |
-| Neovim (NvChad v2.5) | `.config/nvim/` (submodule) + `.config/nvchad-custom/` |
+| Neovim (NvChad starter, reference only) | `.config/nvchad-starter/` (submodule) |
+| Neovim (scratch config) | `.config/nvim-scratch/` |
 | Tmux | `.config/tmux/tmux.conf` |
 | Vim fallback | `.vimrc` |
 | Bat themes | `.config/bat/` |
@@ -82,7 +83,7 @@ prompt and no `ll` alias. That is expected, not a misconfiguration.
 
 Two submodules are tracked:
 - `.config/tmux/plugins/tpm` → tmux-plugins/tpm
-- `.config/nvim` → NvChad/starter
+- `.config/nvchad-starter` → NvChad/starter
 
 `.config/base16-shell` was removed: shell palettes are now the terminal's job,
 and upstream had been dormant since 2024.
@@ -91,7 +92,32 @@ After pulling changes that touch submodules: `git submodule update --init --recu
 
 ## Neovim Setup
 
-NvChad v2.5 is the base (`.config/nvim/` submodule). Custom overrides live exclusively in `.config/nvchad-custom/` — do not modify files inside `.config/nvim/` directly. Plugins include: fugitive, lspconfig, none-ls (null-ls replacement), undotree, vim-tmux-navigator.
+**There is deliberately no `.config/nvim` in this repo.** Nothing is deployed to
+neovim's default config path, so plain `nvim` starts unconfigured unless you
+create that symlink yourself on a given machine.
+
+Two configs are tracked, neither of them active by default:
+
+| Path | What it is |
+|------|-----------|
+| `.config/nvchad-starter/` | The NvChad starter template, as a submodule. Pristine upstream — treat it as read-only reference |
+| `.config/nvim-scratch/` | A standalone lazy.nvim config, tracked normally and freely editable |
+
+To use one, symlink or set `NVIM_APPNAME`:
+
+```bash
+ln -s ~/.config/nvchad-starter ~/.config/nvim   # make it the default
+NVIM_APPNAME=nvim-scratch nvim                  # or run one ad hoc
+```
+
+The submodule was previously checked out at `.config/nvim`, which made it the
+live config — so a `submodule update` could overwrite edits made there. Keeping
+it at a non-default path removes that risk: editing the starter is now an
+explicit act, not a side effect of using neovim.
+
+`.config/nvchad-custom/` was removed. It held NvChad v2.0-style overrides that
+nothing had loaded since the v2.5 starter landed, and had been untouched since
+January 2025.
 
 ## Tmux
 
