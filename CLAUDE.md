@@ -55,9 +55,15 @@ Fish plugins are listed in `.config/fish/fish_plugins` and managed by fisher:
 
 | Plugin | Purpose |
 |--------|---------|
-| `jorgebucaran/fisher` | The plugin manager itself |
 | `laughedelic/pisces` | Paired-symbol handling |
 | `PatrickF1/fzf.fish` | fzf keybindings (replaced the dormant `jethrokuan/fzf`) |
+
+**Do not add `jorgebucaran/fisher` to this file.** Fisher does not list itself,
+and rewrites `fish_plugins` without that line every time it runs. Tracking it
+makes the file diverge on every host after the first `fisher update`, which
+then breaks the ansible dotfiles role — its `merge --ff-only` correctly refuses
+to overwrite the local change. Fisher bootstraps from the tracked
+`functions/fisher.fish` and `completions/fisher.fish`; it needs no entry here.
 
 Three tools are **binaries, not plugins**, installed by the ansible repo's
 `base_system` role. Each has a guarded file in `conf.d/` so a host without the
