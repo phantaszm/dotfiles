@@ -29,10 +29,13 @@ Git Flow is in use: `main`, `develop`, feature branches (`feature/*`), hotfix br
 
 Post-install (interactive, run in fish):
 ```fish
-theme_name base16-tomorrow-night   # set base16 color theme
-fisher update                      # install fish plugins
+fisher update                      # sync fish plugins to fish_plugins
 # In tmux: <Ctrl-a>+I             # install tmux plugins via TPM
 ```
+
+`fisher update` both installs listed plugins and **removes ones no longer in
+`fish_plugins`** — it is what actually uninstalls a dropped plugin's functions
+from a host.
 
 ## Key Configs and Where They Live
 
@@ -46,12 +49,37 @@ fisher update                      # install fish plugins
 | Bat themes | `.config/bat/` |
 | Silicon | `.config/silicon/` |
 
+## Shell Tooling
+
+Fish plugins are listed in `.config/fish/fish_plugins` and managed by fisher:
+
+| Plugin | Purpose |
+|--------|---------|
+| `jorgebucaran/fisher` | The plugin manager itself |
+| `laughedelic/pisces` | Paired-symbol handling |
+| `PatrickF1/fzf.fish` | fzf keybindings (replaced the dormant `jethrokuan/fzf`) |
+
+Three tools are **binaries, not plugins**, installed by the ansible repo's
+`base_system` role. Each has a guarded file in `conf.d/` so a host without the
+binary falls through silently instead of erroring on every shell:
+
+| Tool | File | Replaced |
+|------|------|----------|
+| starship | `conf.d/starship.fish` | `matchai/spacefish` (archived 2021) |
+| zoxide | `conf.d/zoxide.fish` | `jethrokuan/z` |
+| eza | `conf.d/eza.fish` | `gazorby/fish-exa` (wrapped the dead `exa`) |
+
+Debian 12 packages none of the three, so hosts on it keep fish's built-in
+prompt and no `ll` alias. That is expected, not a misconfiguration.
+
 ## Submodules
 
-Three submodules are tracked:
-- `.config/base16-shell` → chriskempson/base16-shell
+Two submodules are tracked:
 - `.config/tmux/plugins/tpm` → tmux-plugins/tpm
 - `.config/nvim` → NvChad/starter
+
+`.config/base16-shell` was removed: shell palettes are now the terminal's job,
+and upstream had been dormant since 2024.
 
 After pulling changes that touch submodules: `git submodule update --init --recursive`.
 

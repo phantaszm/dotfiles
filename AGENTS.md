@@ -7,8 +7,7 @@ This is a dotfiles repository using the [bare git repo pattern](https://www.atla
 Run `.bin/dgit-install.sh` to install. It clones the repo to `~/.dotfiles` and checks out configs to `$HOME`.
 
 Post-install steps:
-- Set fish theme: `theme_name base16-tomorrow-night`
-- Install fish plugins: `fisher update`
+- Sync fish plugins: `fisher update` (also removes plugins dropped from `fish_plugins`)
 - Install tmux plugins: `<PREFIX>+I` (prefix is Ctrl-a by default)
 
 ## Structure
