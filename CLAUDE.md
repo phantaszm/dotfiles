@@ -100,13 +100,14 @@ Two configs are tracked, neither of them active by default:
 
 | Path | What it is |
 |------|-----------|
+| `.config/nvim-mine/` | The real config: NvChad v2.5 plus local customisations. Tracked normally, freely editable |
 | `.config/nvchad-starter/` | The NvChad starter template, as a submodule. Pristine upstream — treat it as read-only reference |
 | `.config/nvim-scratch/` | A standalone lazy.nvim config, tracked normally and freely editable |
 
 To use one, symlink or set `NVIM_APPNAME`:
 
 ```bash
-ln -s ~/.config/nvchad-starter ~/.config/nvim   # make it the default
+ln -s ~/.config/nvim-mine ~/.config/nvim        # the usual choice
 NVIM_APPNAME=nvim-scratch nvim                  # or run one ad hoc
 ```
 
@@ -115,9 +116,16 @@ live config — so a `submodule update` could overwrite edits made there. Keepin
 it at a non-default path removes that risk: editing the starter is now an
 explicit act, not a side effect of using neovim.
 
+`.config/nvim-mine/` carries what used to live untracked inside the submodule
+checkout, so it now survives submodule work. Two customisations to know about:
+`chadrc.lua` sets `theme = "tomorrow_night"` (matching the bat and silicon
+themes), and `configs/lspconfig.lua` enables `pylsp`, `marksman`, `bashls`,
+`terraformls` and `yamlls`. That LSP list was ported from the NvChad v2.0 API
+to v2.5's `vim.lsp.enable`.
+
 `.config/nvchad-custom/` was removed. It held NvChad v2.0-style overrides that
 nothing had loaded since the v2.5 starter landed, and had been untouched since
-January 2025.
+January 2025 — its useful content is now in `nvim-mine`.
 
 ## Tmux
 
