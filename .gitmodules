@@ -1,6 +1,7 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/NvChad/starter
+[submodule ".config/nvchad-starter"]
+	path = .config/nvchad-starter
+	url = https://github.com/NvChad/starter.git
+	branch = main

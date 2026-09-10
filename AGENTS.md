@@ -14,7 +14,9 @@ Post-install steps:
 
 - `.bin/` - executable scripts
 - `.config/fish/` - fish shell config
-- `.config/nvim/` - neovim config (NvChad-based)
+- `.config/nvchad-starter/` - NvChad starter template (submodule, reference only)
+- `.config/nvim-scratch/` - standalone lazy.nvim config
+  (no `.config/nvim` is deployed; symlink one of the above to activate it)
 - `.config/tmux/` - tmux config
 - `.vimrc` - vim config (fallback for systems without neovim)
 
