@@ -115,7 +115,10 @@ pinned ansible role on Debian and Ubuntu: `zi` needs fzf >= 0.51, and apt ships
 `conf.d/direnv.fish` and `conf.d/man.fish` guard the same way — on `direnv`,
 and on `bat` with a fallback to `batcat` (Debian's name for it). The man guard
 matters most: `MANPAGER` runs on every `man` call, so an unguarded missing bat
-breaks `man` entirely. `conf.d/bat.fish` is deliberately unguarded — it only
+breaks `man` entirely. It also sets `MANROFFOPT=-c`: Arch's groff
+emits colour codes by default, which the `col -bx` in `MANPAGER` mangles into
+visible junk (`1mls 22m`); Debian's groff and macOS's mandoc already emit the
+backspace form `col` expects. `conf.d/bat.fish` is deliberately unguarded — it only
 sets `BAT_*` variables, which cannot fail and are read by `batcat` too.
 
 `functions/bat.fish.disabled` and `functions/fd.fish.disabled` were removed in
