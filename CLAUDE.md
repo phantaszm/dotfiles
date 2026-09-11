@@ -174,8 +174,8 @@ across machines.
 The name `.config/nvchad-custom/` has been used twice. It first held NvChad
 v2.0-style overrides that nothing had loaded since the v2.5 starter landed,
 untouched since January 2025; that directory was removed and its useful
-content moved into the v2.5 config, then called `nvchad-custom`. In 0.22.0
-`nvchad-custom` was renamed to `nvchad-custom`, so the name now means the current
+content moved into the v2.5 config, then called `nvim-mine`. In 0.22.0
+`nvim-mine` was renamed to `nvchad-custom`, so the name now means the current
 v2.5 config.
 
 `.config/nvim-scratch/` was removed in 0.21.0: a standalone lazy.nvim config,
