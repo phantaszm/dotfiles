@@ -57,7 +57,7 @@ the same fisher tag. Afterwards, plain `fisher update` re-syncs to
 |------|------|
 | Fish shell | `.config/fish/` |
 | Fish abbreviations (git shorts) | `.config/fish/conf.d/git-shorts.fish` |
-| Neovim (real config) | `.config/nvim-mine/` |
+| Neovim (real config) | `.config/nvchad-custom/` |
 | Neovim (NvChad starter, reference only) | `.config/nvchad-starter/` (submodule) |
 | Tmux | `.config/tmux/tmux.conf` |
 | Vim fallback | `.vimrc` |
@@ -147,13 +147,13 @@ Two configs are tracked, neither of them active by default:
 
 | Path | What it is |
 |------|-----------|
-| `.config/nvim-mine/` | The real config: NvChad v2.5 plus local customisations. Tracked normally, freely editable |
+| `.config/nvchad-custom/` | The real config: NvChad v2.5 plus local customisations. Tracked normally, freely editable |
 | `.config/nvchad-starter/` | The NvChad starter template, as a submodule. Pristine upstream — treat it as read-only reference |
 
 To use one, symlink or set `NVIM_APPNAME`:
 
 ```bash
-ln -s ~/.config/nvim-mine ~/.config/nvim        # the usual choice
+ln -s ~/.config/nvchad-custom ~/.config/nvim   # the usual choice
 NVIM_APPNAME=nvchad-starter nvim                # or run one ad hoc
 ```
 
@@ -162,7 +162,7 @@ live config — so a `submodule update` could overwrite edits made there. Keepin
 it at a non-default path removes that risk: editing the starter is now an
 explicit act, not a side effect of using neovim.
 
-`.config/nvim-mine/` carries what used to live untracked inside the submodule
+`.config/nvchad-custom/` carries what used to live untracked inside the submodule
 checkout, so it now survives submodule work. Two customisations to know about:
 `chadrc.lua` sets `theme = "tomorrow_night"` (matching the bat and silicon
 themes), and `configs/lspconfig.lua` enables `pylsp`, `marksman`, `bashls`,
@@ -171,15 +171,18 @@ to v2.5's `vim.lsp.enable`. `lazy-lock.json` is deliberately untracked (see
 `.gitignore`): each machine keeps its own, so plugin versions are not pinned
 across machines.
 
-`.config/nvchad-custom/` was removed. It held NvChad v2.0-style overrides that
-nothing had loaded since the v2.5 starter landed, and had been untouched since
-January 2025 — its useful content is now in `nvim-mine`.
+The name `.config/nvchad-custom/` has been used twice. It first held NvChad
+v2.0-style overrides that nothing had loaded since the v2.5 starter landed,
+untouched since January 2025; that directory was removed and its useful
+content moved into the v2.5 config, then called `nvchad-custom`. In 0.22.0
+`nvchad-custom` was renamed to `nvchad-custom`, so the name now means the current
+v2.5 config.
 
 `.config/nvim-scratch/` was removed in 0.21.0: a standalone lazy.nvim config,
 untouched since November 2023 and unused on every machine.
 
 `.vim/` was removed in 0.21.0 too. It held only a README on vim's pack system.
-Its one real effect was making `~/.vim` exist for nvim-mine's `undodir`
+Its one real effect was making `~/.vim` exist for nvchad-custom's `undodir`
 (`~/.vim/undodir`), and neovim creates that directory, parents included, on the
 first undo write (checked on 0.12.4).
 
