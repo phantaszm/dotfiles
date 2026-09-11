@@ -65,7 +65,9 @@ main() {
 For a nicer experience:
   * install fisher and fish plugins (run in fish):
       curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update
-  * install tmux plugins using <PREFIX>+I'
+  * install tmux plugins using <PREFIX>+I
+  * build the bat theme cache so BAT_THEME (base16-tomorrow-night) resolves:
+      bat cache --build        (batcat cache --build on Debian/Ubuntu)'
 }
 
 main
