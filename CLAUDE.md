@@ -31,6 +31,7 @@ Post-install (interactive, run in fish):
 ```fish
 # fisher is not tracked here, so fetch it once, then sync fish_plugins:
 curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update
+bat cache --build                  # so BAT_THEME's custom theme resolves (batcat on Debian/Ubuntu)
 # In tmux: <Ctrl-a>+I             # install tmux plugins via TPM
 ```
 
