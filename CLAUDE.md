@@ -43,6 +43,7 @@ from a host.
 |------|------|
 | Fish shell | `.config/fish/` |
 | Fish abbreviations (git shorts) | `.config/fish/conf.d/git-shorts.fish` |
+| Neovim (real config) | `.config/nvim-mine/` |
 | Neovim (NvChad starter, reference only) | `.config/nvchad-starter/` (submodule) |
 | Neovim (scratch config) | `.config/nvim-scratch/` |
 | Tmux | `.config/tmux/tmux.conf` |
@@ -96,7 +97,7 @@ After pulling changes that touch submodules: `git submodule update --init --recu
 neovim's default config path, so plain `nvim` starts unconfigured unless you
 create that symlink yourself on a given machine.
 
-Two configs are tracked, neither of them active by default:
+Three configs are tracked, none of them active by default:
 
 | Path | What it is |
 |------|-----------|
