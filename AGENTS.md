@@ -7,7 +7,8 @@ This is a dotfiles repository using the [bare git repo pattern](https://www.atla
 Run `.bin/dgit-install.sh` to install. It clones the repo to `~/.dotfiles` and checks out configs to `$HOME`.
 
 Post-install steps:
-- Sync fish plugins: `fisher update` (also removes plugins dropped from `fish_plugins`)
+- Install fisher once, then sync plugins (in fish): `curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update`
+  (afterwards, plain `fisher update` syncs to `fish_plugins`, removing dropped plugins)
 - Install tmux plugins: `<PREFIX>+I` (prefix is Ctrl-a by default)
 
 ## Structure

@@ -48,8 +48,8 @@ main() {
 
   echo '===
 For a nicer experience:
-  * set shell theme using `theme_name` like `base16-tomorrow-night`
-  * install fish modules with `fisher update`
+  * install fisher and fish plugins (run in fish):
+      curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update
   * install tmux plugins using <PREFIX>+I'
 }
 
