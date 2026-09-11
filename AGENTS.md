@@ -12,6 +12,7 @@ Post-install steps:
 - Install fisher once, then sync plugins (in fish): `curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update`
   (afterwards, plain `fisher update` syncs to `fish_plugins`, removing dropped plugins)
 - Install tmux plugins: `<PREFIX>+I` (prefix is Ctrl-a by default)
+- Build bat's theme cache: `bat cache --build` (`batcat cache --build` on Debian/Ubuntu), so the custom `BAT_THEME` resolves
 
 ## Structure
 
