@@ -20,6 +20,20 @@ init_dotfiles() {
   git clone --bare --branch "$BRANCH" "$DOTFILES_REPO" "$DOTFILES_DIR"
 }
 
+# Keep the repo's own docs out of $HOME. They stay tracked, just not checked
+# out: Claude Code reads CLAUDE.md from every parent directory, so a copy in
+# $HOME applied to every project under it. Run before the first checkout so
+# the files never land; on an older install it removes them (unless edited).
+# git's own `sparse-checkout set`, not a hand-written config: git keeps the
+# on/off setting in config.worktree, which overrides the main config.
+# expectFilesOutsideOfPatterns keeps a pre-existing ~/README.md of your own
+# from showing up as a modified tracked file. `dgit sparse-checkout disable`
+# undoes it.
+configure_sparse() {
+  dgit config sparse.expectFilesOutsideOfPatterns true
+  (cd "$HOME" && dgit sparse-checkout set --no-cone '/*' '!/README.md' '!/CLAUDE.md' '!/AGENTS.md')
+}
+
 backup_conflicting() {
   local conflicting
   conflicting=$(dgit checkout 2>&1 | awk '/^\s/{print $1}' || true)
@@ -37,6 +51,7 @@ backup_conflicting() {
 
 main() {
   init_dotfiles
+  configure_sparse
 
   if ! dgit checkout 2>/dev/null; then
     backup_conflicting

@@ -5,6 +5,8 @@ This is a dotfiles repository using the [bare git repo pattern](https://www.atla
 ## Setup
 
 Run `.bin/dgit-install.sh` to install. It clones the repo to `~/.dotfiles` and checks out configs to `$HOME`.
+The repo's own `README.md`, `CLAUDE.md` and `AGENTS.md` are excluded from that checkout (sparse checkout), so
+they don't apply to every project under `$HOME`; read them in the source clone.
 
 Post-install steps:
 - Install fisher once, then sync plugins (in fish): `curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update`

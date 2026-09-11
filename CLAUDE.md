@@ -34,6 +34,15 @@ curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions
 # In tmux: <Ctrl-a>+I             # install tmux plugins via TPM
 ```
 
+**The repo's own docs are not checked out into `$HOME`.** `README.md`,
+`CLAUDE.md` and `AGENTS.md` stay tracked but are excluded by a sparse checkout,
+set by `dgit-install.sh` and by the ansible dotfiles role
+(`dotfiles_sparse_patterns`). Claude Code reads `CLAUDE.md` from every parent
+directory, so a copy in `$HOME` was loaded as instructions into every project
+under it. Read and edit them in the source clone (`~/src/dotfiles`).
+`dgit sparse-checkout list` shows the patterns; `dgit sparse-checkout disable`
+undoes it.
+
 `fisher update` both installs listed plugins and **removes ones no longer in
 `fish_plugins`** — it is what actually uninstalls a dropped plugin's functions
 from a host.
