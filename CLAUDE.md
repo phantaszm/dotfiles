@@ -112,8 +112,10 @@ sets `BAT_*` variables, which cannot fail and are read by `batcat` too.
 `functions/bat.fish.disabled` and `functions/fd.fish.disabled` were removed in
 0.21.0. They wrapped Debian's `batcat` and `fdfind` names, had been disabled
 since 2023, and are covered elsewhere: `man.fish` and the ansible dotfiles role
-handle `batcat`, fzf.fish looks for `fdfind` itself, and the Debian hosts have a
-hand-made `/usr/local/bin/bat` link. They have no `fd` command, only `fdfind`.
+handle `batcat`, and fzf.fish looks for `fdfind` itself. Since tech-ansible
+7.12.0 the ansible `base_system` role also links `/usr/local/bin/bat` and
+`/usr/local/bin/fd` to `batcat` and `fdfind` on Debian-family hosts, so both
+upstream names work there.
 
 ## Submodules
 
