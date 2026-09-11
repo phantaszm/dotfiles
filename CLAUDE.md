@@ -97,6 +97,12 @@ binary falls through silently instead of erroring on every shell:
 Debian 12 packages none of the three, so hosts on it keep fish's built-in
 prompt and no `ll` alias. That is expected, not a misconfiguration.
 
+`conf.d/direnv.fish` and `conf.d/man.fish` guard the same way — on `direnv`,
+and on `bat` with a fallback to `batcat` (Debian's name for it). The man guard
+matters most: `MANPAGER` runs on every `man` call, so an unguarded missing bat
+breaks `man` entirely. `conf.d/bat.fish` is deliberately unguarded — it only
+sets `BAT_*` variables, which cannot fail and are read by `batcat` too.
+
 ## Submodules
 
 Two submodules are tracked:
