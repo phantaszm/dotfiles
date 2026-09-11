@@ -84,9 +84,11 @@ case, keeping only the ones that registered. With nothing blocking fisher from
 registering itself, the rewritten file matches the tracked one, so there is no
 divergence.
 
-Three tools are **binaries, not plugins**, installed by the ansible repo's
-`base_system` role. Each has a guarded file in `conf.d/` so a host without the
-binary falls through silently instead of erroring on every shell:
+Three tools are **binaries, not plugins**, installed by the ansible repo:
+from the distro via `base_system`, or as pinned release binaries by its
+`starship` and `zoxide` roles where the distro's is missing or too old. Each
+has a guarded file in `conf.d/` so a host without the binary falls through
+silently instead of erroring on every shell:
 
 | Tool | File | Replaced |
 |------|------|----------|
@@ -94,8 +96,13 @@ binary falls through silently instead of erroring on every shell:
 | zoxide | `conf.d/zoxide.fish` | `jethrokuan/z` |
 | eza | `conf.d/eza.fish` | `gazorby/fish-exa` (wrapped the dead `exa`) |
 
-Debian 12 packages none of the three, so hosts on it keep fish's built-in
-prompt and no `ll` alias. That is expected, not a misconfiguration.
+The Pis (Debian 12) get zoxide from the pinned role, but no starship or eza,
+so they keep fish's built-in prompt and no `ll` alias. That is expected, not a
+misconfiguration.
+
+`fzf` itself — which both `fzf.fish` and zoxide's `zi` need — also comes from a
+pinned ansible role on Debian and Ubuntu: `zi` needs fzf >= 0.51, and apt ships
+0.38 on bookworm and 0.44 on noble.
 
 `conf.d/direnv.fish` and `conf.d/man.fish` guard the same way — on `direnv`,
 and on `bat` with a fallback to `batcat` (Debian's name for it). The man guard
