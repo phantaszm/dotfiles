@@ -1,8 +1,0 @@
-require("plugins_conf.colorscheme")
-require("plugins_conf.lualine")
-require("plugins_conf.telescope")
-require("plugins_conf.nvim-tree")
-require("plugins_conf.treesitter")
-require("plugins_conf.undotree")
-require("plugins_conf.vim-fugitive")
-require("plugins_conf.lsp-zero")

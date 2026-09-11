@@ -50,7 +50,6 @@ the same fisher tag. Afterwards, plain `fisher update` re-syncs to
 | Fish abbreviations (git shorts) | `.config/fish/conf.d/git-shorts.fish` |
 | Neovim (real config) | `.config/nvim-mine/` |
 | Neovim (NvChad starter, reference only) | `.config/nvchad-starter/` (submodule) |
-| Neovim (scratch config) | `.config/nvim-scratch/` |
 | Tmux | `.config/tmux/tmux.conf` |
 | Vim fallback | `.vimrc` |
 | Bat themes | `.config/bat/` |
@@ -110,6 +109,12 @@ matters most: `MANPAGER` runs on every `man` call, so an unguarded missing bat
 breaks `man` entirely. `conf.d/bat.fish` is deliberately unguarded — it only
 sets `BAT_*` variables, which cannot fail and are read by `batcat` too.
 
+`functions/bat.fish.disabled` and `functions/fd.fish.disabled` were removed in
+0.21.0. They wrapped Debian's `batcat` and `fdfind` names, had been disabled
+since 2023, and are covered elsewhere: `man.fish` and the ansible dotfiles role
+handle `batcat`, fzf.fish looks for `fdfind` itself, and the Debian hosts have a
+hand-made `/usr/local/bin/bat` link. They have no `fd` command, only `fdfind`.
+
 ## Submodules
 
 Two submodules are tracked:
@@ -127,19 +132,18 @@ After pulling changes that touch submodules: `git submodule update --init --recu
 neovim's default config path, so plain `nvim` starts unconfigured unless you
 create that symlink yourself on a given machine.
 
-Three configs are tracked, none of them active by default:
+Two configs are tracked, neither of them active by default:
 
 | Path | What it is |
 |------|-----------|
 | `.config/nvim-mine/` | The real config: NvChad v2.5 plus local customisations. Tracked normally, freely editable |
 | `.config/nvchad-starter/` | The NvChad starter template, as a submodule. Pristine upstream — treat it as read-only reference |
-| `.config/nvim-scratch/` | A standalone lazy.nvim config, tracked normally and freely editable |
 
 To use one, symlink or set `NVIM_APPNAME`:
 
 ```bash
 ln -s ~/.config/nvim-mine ~/.config/nvim        # the usual choice
-NVIM_APPNAME=nvim-scratch nvim                  # or run one ad hoc
+NVIM_APPNAME=nvchad-starter nvim                # or run one ad hoc
 ```
 
 The submodule was previously checked out at `.config/nvim`, which made it the
@@ -159,6 +163,14 @@ across machines.
 `.config/nvchad-custom/` was removed. It held NvChad v2.0-style overrides that
 nothing had loaded since the v2.5 starter landed, and had been untouched since
 January 2025 — its useful content is now in `nvim-mine`.
+
+`.config/nvim-scratch/` was removed in 0.21.0: a standalone lazy.nvim config,
+untouched since November 2023 and unused on every machine.
+
+`.vim/` was removed in 0.21.0 too. It held only a README on vim's pack system.
+Its one real effect was making `~/.vim` exist for nvim-mine's `undodir`
+(`~/.vim/undodir`), and neovim creates that directory, parents included, on the
+first undo write (checked on 0.12.4).
 
 ## Tmux
 
