@@ -29,13 +29,18 @@ Git Flow is in use: `main`, `develop`, feature branches (`feature/*`), hotfix br
 
 Post-install (interactive, run in fish):
 ```fish
-fisher update                      # sync fish plugins to fish_plugins
+# fisher is not tracked here, so fetch it once, then sync fish_plugins:
+curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update
 # In tmux: <Ctrl-a>+I             # install tmux plugins via TPM
 ```
 
 `fisher update` both installs listed plugins and **removes ones no longer in
 `fish_plugins`** — it is what actually uninstalls a dropped plugin's functions
 from a host.
+
+On ansible-managed hosts the dotfiles role runs that bootstrap itself, pinned to
+the same fisher tag. Afterwards, plain `fisher update` re-syncs to
+`fish_plugins`.
 
 ## Key Configs and Where They Live
 
@@ -57,15 +62,27 @@ Fish plugins are listed in `.config/fish/fish_plugins` and managed by fisher:
 
 | Plugin | Purpose |
 |--------|---------|
+| `jorgebucaran/fisher` | The plugin manager itself — fisher manages its own files |
 | `laughedelic/pisces` | Paired-symbol handling |
 | `PatrickF1/fzf.fish` | fzf keybindings (replaced the dormant `jethrokuan/fzf`) |
 
-**Do not add `jorgebucaran/fisher` to this file.** Fisher does not list itself,
-and rewrites `fish_plugins` without that line every time it runs. Tracking it
-makes the file diverge on every host after the first `fisher update`, which
-then breaks the ansible dotfiles role — its `merge --ff-only` correctly refuses
-to overwrite the local change. Fisher bootstraps from the tracked
-`functions/fisher.fish` and `completions/fisher.fish`; it needs no entry here.
+**Fisher owns its own files; this repo must not track them.** Keep
+`jorgebucaran/fisher` listed, and never commit `functions/fisher.fish` or
+`completions/fisher.fish`. Until 0.20.0 the repo vendored both, which gave them
+two owners and broke in both directions:
+
+- **With the line listed**, `fisher update` tried to install itself, hit its own
+  vendored files as a conflict (*"Cannot install … conflicting files"*),
+  skipped itself, then rewrote `fish_plugins` without the line. The file
+  diverged and the ansible dotfiles role's `merge --ff-only` refused to run.
+- **With the line removed**, any machine where fisher had ever been registered
+  treated it as an unlisted plugin and uninstalled it — deleting the vendored
+  files and stopping before it installed anything else.
+
+Fisher rewrites `fish_plugins` from the file's own entries, in their order and
+case, keeping only the ones that registered. With nothing blocking fisher from
+registering itself, the rewritten file matches the tracked one, so there is no
+divergence.
 
 Three tools are **binaries, not plugins**, installed by the ansible repo's
 `base_system` role. Each has a guarded file in `conf.d/` so a host without the
@@ -122,7 +139,9 @@ checkout, so it now survives submodule work. Two customisations to know about:
 `chadrc.lua` sets `theme = "tomorrow_night"` (matching the bat and silicon
 themes), and `configs/lspconfig.lua` enables `pylsp`, `marksman`, `bashls`,
 `terraformls` and `yamlls`. That LSP list was ported from the NvChad v2.0 API
-to v2.5's `vim.lsp.enable`.
+to v2.5's `vim.lsp.enable`. `lazy-lock.json` is deliberately untracked (see
+`.gitignore`): each machine keeps its own, so plugin versions are not pinned
+across machines.
 
 `.config/nvchad-custom/` was removed. It held NvChad v2.0-style overrides that
 nothing had loaded since the v2.5 starter landed, and had been untouched since

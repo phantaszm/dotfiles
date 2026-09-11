@@ -1,0 +1,3 @@
+# lazy.nvim regenerates this per machine. Tracking it pinned plugin versions
+# across machines and let any headless launch dirty the checkout.
+.config/nvim-mine/lazy-lock.json
