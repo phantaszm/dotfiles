@@ -36,7 +36,7 @@ and prints a tip for the ones it had to skip:
 
 | Step | When |
 |------|------|
-| fisher: bootstrap from the pinned tag, or `fisher update` if already installed | fish present |
+| fisher: bootstrap from the tag `fish_plugins` pins, or `fisher update` if already installed | fish present |
 | `bat cache --build` (`batcat` on Debian/Ubuntu) | a theme in `.config/bat/themes` is missing from `bat --list-themes` |
 | `tpm/bin/install_plugins`, what `<PREFIX>+I` does | tmux present. tpm starts a tmux server to read the config; the script stops it afterwards only if none was running before |
 
@@ -44,9 +44,10 @@ So on a machine ansible does not manage (the Mac), rerunning the script is the
 update command. On ansible-managed hosts the tech-ansible `dotfiles` role does
 the same steps; do not run the script there.
 
-Manual fallback for fisher, in fish:
+Manual fallback for fisher, in fish, with `<tag>` taken from the
+`jorgebucaran/fisher@<tag>` line in `fish_plugins`:
 ```fish
-curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update
+curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/<tag>/functions/fisher.fish | source && fisher update
 ```
 
 **The repo's own docs are not checked out into `$HOME`.** `README.md`,
@@ -62,9 +63,10 @@ undoes it.
 `fish_plugins`** — it is what actually uninstalls a dropped plugin's functions
 from a host.
 
-On ansible-managed hosts the dotfiles role runs that bootstrap itself, pinned to
-the same fisher tag, and runs `fisher update` whenever a fast-forward changed
-`fish_plugins`.
+On ansible-managed hosts the dotfiles role runs that bootstrap itself, reading
+the same tag from `fish_plugins`, and runs `fisher update` whenever a
+fast-forward changed `fish_plugins`. Bumping fisher is therefore a one-line
+edit here; the next rollout applies it everywhere.
 
 ## Key Configs and Where They Live
 
@@ -86,12 +88,12 @@ Fish plugins are listed in `.config/fish/fish_plugins` and managed by fisher:
 
 | Plugin | Purpose |
 |--------|---------|
-| `jorgebucaran/fisher` | The plugin manager itself — fisher manages its own files |
+| `jorgebucaran/fisher@<tag>` | The plugin manager itself — fisher manages its own files. The `@<tag>` is the one place fisher's version is pinned: the installer and the ansible role bootstrap from it, and fisher keeps itself at it (up- or downgrading on `fisher update`, verified 4.4.8 ↔ 4.4.7) |
 | `laughedelic/pisces` | Paired-symbol handling |
 | `PatrickF1/fzf.fish` | fzf keybindings (replaced the dormant `jethrokuan/fzf`) |
 
 **Fisher owns its own files; this repo must not track them.** Keep
-`jorgebucaran/fisher` listed, and never commit `functions/fisher.fish` or
+`jorgebucaran/fisher@<tag>` listed, and never commit `functions/fisher.fish` or
 `completions/fisher.fish`. Until 0.20.0 the repo vendored both, which gave them
 two owners and broke in both directions:
 
