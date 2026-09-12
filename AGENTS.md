@@ -18,6 +18,7 @@ Post-install steps:
 
 - `.bin/` - executable scripts
 - `.config/fish/` - fish shell config
+- `.config/git/config` - git behaviour (no identity; ansible writes that to `~/.gitconfig`)
 - `.config/nvchad-custom/` - neovim config (NvChad v2.5 plus local customisations)
 - `.config/nvchad-starter/` - NvChad starter template (submodule, reference only)
   (no `.config/nvim` is deployed; symlink one of the above to activate it)
