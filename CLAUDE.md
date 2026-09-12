@@ -24,15 +24,29 @@ Git Flow is in use: `main`, `develop`, feature branches (`feature/*`), hotfix br
 ## Installation
 
 ```bash
-.bin/dgit-install.sh   # clone bare repo to ~/.dotfiles, checkout to $HOME, init submodules
+.bin/dgit-install.sh   # bootstrap, or update an existing install
 ```
 
-Post-install (interactive, run in fish):
+First run: clone the bare repo to `~/.dotfiles`, check the tree out over
+`$HOME` (conflicting files go to `~/.dotfiles-backup`), init submodules. Later
+runs: `fetch` and `merge --ff-only` from the tracked remote (`origin`, or
+whatever `branch.main.remote` says -- the Mac's is `github`). Either way it then
+does the setup files alone cannot, each step only when its tool is present,
+and prints a tip for the ones it had to skip:
+
+| Step | When |
+|------|------|
+| fisher: bootstrap from the pinned tag, or `fisher update` if already installed | fish present |
+| `bat cache --build` (`batcat` on Debian/Ubuntu) | a theme in `.config/bat/themes` is missing from `bat --list-themes` |
+| `tpm/bin/install_plugins`, what `<PREFIX>+I` does | tmux present. tpm starts a tmux server to read the config; the script stops it afterwards only if none was running before |
+
+So on a machine ansible does not manage (the Mac), rerunning the script is the
+update command. On ansible-managed hosts the tech-ansible `dotfiles` role does
+the same steps; do not run the script there.
+
+Manual fallback for fisher, in fish:
 ```fish
-# fisher is not tracked here, so fetch it once, then sync fish_plugins:
 curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/4.4.8/functions/fisher.fish | source && fisher update
-bat cache --build                  # so BAT_THEME's custom theme resolves (batcat on Debian/Ubuntu)
-# In tmux: <Ctrl-a>+I             # install tmux plugins via TPM
 ```
 
 **The repo's own docs are not checked out into `$HOME`.** `README.md`,
@@ -49,7 +63,7 @@ undoes it.
 from a host.
 
 On ansible-managed hosts the dotfiles role runs that bootstrap itself, pinned to
-the same fisher tag. Afterwards, plain `fisher update` re-syncs to
+the same fisher tag, and runs `fisher update` whenever a fast-forward changed
 `fish_plugins`.
 
 ## Key Configs and Where They Live
