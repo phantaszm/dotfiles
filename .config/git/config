@@ -1,0 +1,47 @@
+# Git behaviour shared by every machine. Identity and signing are deliberately
+# not here: they differ per host (work vs personal) and sit next to secrets,
+# so the ansible base_system role writes them to ~/.gitconfig instead. git
+# reads both files; a key set in ~/.gitconfig wins over the same key here.
+#
+# Until dotfiles 0.23.0 / tech-ansible 7.15.0 these were written by ansible,
+# which meant the Mac and any other dgit-only machine had none of them.
+#
+# asphalt (Omarchy) does not check this file out: Omarchy ships its own
+# ~/.config/git/config at the same path with the same settings.
+
+[core]
+	editor = nvim
+	# delta may be missing (Debian 12 has no package); git then writes plain
+	# output with no error, so this is safe to set everywhere.
+	pager = delta
+
+[pull]
+	rebase = true
+
+[push]
+	# git >= 2.37; older git ignores unknown keys.
+	autoSetupRemote = true
+
+[diff]
+	algorithm = histogram
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	# Matches what the release workflow does by hand with
+	# `git tag --sort=-v:refname`.
+	sort = -version:refname
+
+[commit]
+	verbose = true
+
+[rerere]
+	# Records conflict resolutions and replays them; the ansible repo hits the
+	# same CHANGELOG conflict on nearly every release back-merge.
+	enabled = true
+	autoupdate = true
+
+[delta]
+	navigate = true
+	dark = true

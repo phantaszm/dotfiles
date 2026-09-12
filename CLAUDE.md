@@ -62,6 +62,7 @@ the same fisher tag. Afterwards, plain `fisher update` re-syncs to
 | Neovim (NvChad starter, reference only) | `.config/nvchad-starter/` (submodule) |
 | Tmux | `.config/tmux/tmux.conf` |
 | Vim fallback | `.vimrc` |
+| Git behaviour (not identity) | `.config/git/config` |
 | Bat themes | `.config/bat/` |
 | Silicon | `.config/silicon/` |
 
@@ -129,6 +130,24 @@ handle `batcat`, and fzf.fish looks for `fdfind` itself. Since tech-ansible
 7.12.0 the ansible `base_system` role also links `/usr/local/bin/bat` and
 `/usr/local/bin/fd` to `batcat` and `fdfind` on Debian-family hosts, so both
 upstream names work there.
+
+## Git Config
+
+`.config/git/config` carries git *behaviour*: delta as pager, `pull.rebase`,
+`push.autoSetupRemote`, histogram diffs, branch/tag sorting, verbose commits,
+rerere. It deliberately holds no identity or signing keys: those differ per
+machine and sit next to secrets, so the ansible `base_system` role writes them
+to `~/.gitconfig`. git reads both files, and `~/.gitconfig` wins on any key set
+in both.
+
+Before 0.23.0 ansible wrote the behaviour settings too, so a dgit-only machine
+(the Mac) had none of them -- delta was installed but never used as the pager.
+tech-ansible 7.15.0 stopped writing them and removes the old copies from
+`~/.gitconfig` on managed hosts, so this file is the only source.
+
+asphalt is the exception: Omarchy ships its own `~/.config/git/config` with the
+same settings, and its `dotfiles_sparse_patterns` do not include `.config/git/`,
+so the two never collide.
 
 ## Submodules
 
