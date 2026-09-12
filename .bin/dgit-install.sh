@@ -14,7 +14,6 @@ DOTFILES_REPO="https://github.com/phantaszm/dotfiles.git"
 DOTFILES_DIR="${HOME}/.dotfiles"
 BACKUP_DIR="${HOME}/.dotfiles-backup"
 BRANCH="${1:-main}"
-FISHER_VERSION="4.4.8"
 
 dgit() {
   git --git-dir="$DOTFILES_DIR" --work-tree="$HOME" "$@"
@@ -87,20 +86,31 @@ update_dotfiles() {
 
 # fisher owns its own files (the repo stopped tracking them in 0.20.0), so a
 # new machine needs it fetched once; after that `fisher update` syncs
-# fish_plugins, removing dropped plugins too. </dev/null is load-bearing:
-# fisher reads plugin names from stdin whenever stdin is not a terminal and
-# blocks until EOF.
+# fish_plugins, removing dropped plugins too. The version to fetch is the one
+# fish_plugins pins on fisher's own line (jorgebucaran/fisher@<tag>), so that
+# file is the single place the version lives; fisher then keeps itself at
+# that tag. An unpinned line means main. </dev/null is load-bearing: fisher
+# reads plugin names from stdin whenever stdin is not a terminal and blocks
+# until EOF.
+fisher_version() {
+  local tag
+  tag=$(grep -o '^jorgebucaran/fisher@.*' "${HOME}/.config/fish/fish_plugins" 2>/dev/null | cut -d@ -f2)
+  echo "${tag:-main}"
+}
+
 setup_fisher() {
+  local version
+  version=$(fisher_version)
   if ! command -v fish >/dev/null; then
-    tips+=("install fish, then rerun this script (or in fish: curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/${FISHER_VERSION}/functions/fisher.fish | source && fisher update)")
+    tips+=("install fish, then rerun this script (or in fish: curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/${version}/functions/fisher.fish | source && fisher update)")
     return 0
   fi
   if [[ -f "${HOME}/.config/fish/functions/fisher.fish" ]]; then
     echo "Syncing fish plugins..."
     fish -c 'fisher update' </dev/null
   else
-    echo "Installing fisher ${FISHER_VERSION} and fish plugins..."
-    fish -c "curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/${FISHER_VERSION}/functions/fisher.fish | source && fisher update" </dev/null
+    echo "Installing fisher ${version} and fish plugins..."
+    fish -c "curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/${version}/functions/fisher.fish | source && fisher update" </dev/null
   fi
 }
 
