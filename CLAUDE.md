@@ -228,7 +228,13 @@ import are read.
 vim-tmux-navigator is not installed in nvim. NvChad's own `<C-h/j/k/l>` window
 maps load after plugins and overrode its keys, so it never worked here. The
 tmux side (`@plugin 'christoomey/vim-tmux-navigator'` in `tmux.conf`) is still
-listed.
+listed, and its root bindings forward `C-h/j/k/l` to any pane running vim or
+nvim (`tmux list-keys -T root` shows them). So inside nvim those keys move
+between nvim splits only: at a split's edge they do not cross into the
+neighbouring tmux pane. Use the tmux prefix bindings (`Ctrl-a`, then `h` left,
+`l` right, `j` up, `k` down: `tmux.conf` has `j` and `k` the opposite way round
+to vim) to leave nvim, or add the plugin back to nvim and rebind the four keys
+in `mappings.lua` after core's.
 
 The name `.config/nvchad-custom/` has been used twice. It first held NvChad
 v2.0-style overrides that nothing had loaded since the v2.5 starter landed,
