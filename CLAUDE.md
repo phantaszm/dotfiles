@@ -210,6 +210,26 @@ to v2.5's `vim.lsp.enable`. `lazy-lock.json` is deliberately untracked (see
 `.gitignore`): each machine keeps its own, so plugin versions are not pinned
 across machines.
 
+The config follows the starter's layout, so the starter's own files only gain
+appended blocks and stay easy to diff against upstream:
+
+| What | Where |
+|------|-------|
+| Options | `lua/options.lua`, after `require "nvchad.options"`. Only what core does not already set; core covers 2-space indent, `number`, `ignorecase`/`smartcase`, `undofile` and `clipboard=unnamedplus`. Folds use treesitter (`foldexpr = vim.treesitter.foldexpr()`) |
+| Keymaps | `lua/mappings.lua`, after `require "nvchad.mappings"`, each with a `desc` |
+| Plugin specs | `lua/plugins/custom.lua`; `lua/plugins/init.lua` stays the stock starter file. Plugin-specific keys go in the spec's `keys` |
+| Per-plugin config | `lua/configs/<plugin>.lua` |
+
+`lua/set.lua`, `lua/remap.lua` and `lua/init.lua` were removed: nothing loaded
+them, so their settings never took effect. Only the files the starter's
+`init.lua` requires (`options`, `autocmds`, `mappings`) and the lazy `plugins`
+import are read.
+
+vim-tmux-navigator is not installed in nvim. NvChad's own `<C-h/j/k/l>` window
+maps load after plugins and overrode its keys, so it never worked here. The
+tmux side (`@plugin 'christoomey/vim-tmux-navigator'` in `tmux.conf`) is still
+listed.
+
 The name `.config/nvchad-custom/` has been used twice. It first held NvChad
 v2.0-style overrides that nothing had loaded since the v2.5 starter landed,
 untouched since January 2025; that directory was removed and its useful
