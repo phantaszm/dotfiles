@@ -225,16 +225,18 @@ them, so their settings never took effect. Only the files the starter's
 `init.lua` requires (`options`, `autocmds`, `mappings`) and the lazy `plugins`
 import are read.
 
-vim-tmux-navigator is not installed in nvim. NvChad's own `<C-h/j/k/l>` window
-maps load after plugins and overrode its keys, so it never worked here. The
-tmux side (`@plugin 'christoomey/vim-tmux-navigator'` in `tmux.conf`) is still
-listed, and its root bindings forward `C-h/j/k/l` to any pane running vim or
-nvim (`tmux list-keys -T root` shows them). So inside nvim those keys move
-between nvim splits only: at a split's edge they do not cross into the
-neighbouring tmux pane. Use the tmux prefix bindings (`Ctrl-a`, then `h` left,
-`l` right, `j` up, `k` down: `tmux.conf` has `j` and `k` the opposite way round
-to vim) to leave nvim, or add the plugin back to nvim and rebind the four keys
-in `mappings.lua` after core's.
+vim-tmux-navigator is installed on neither side. NvChad's own `<C-h/j/k/l>`
+window maps load after plugins and overrode the nvim plugin's keys, so it never
+worked here, and the tmux-side `@plugin` line was removed from `tmux.conf` in
+0.27.0. Inside nvim, `C-h/j/k/l` therefore move between nvim
+splits only; elsewhere tmux passes them through unchanged. Move between tmux
+panes with the prefix bindings (`Ctrl-a`, then `h` left, `l` right, `j` up, `k`
+down: `tmux.conf` has `j` and `k` the opposite way round to vim).
+
+`dgit-install.sh` does not delete plugins that tpm already cloned, so a machine
+that had it keeps `~/.config/tmux/plugins/vim-tmux-navigator` and the root
+bindings in its running tmux server. Remove it with tpm's clean
+(`prefix` + `alt-u`) after the config is deployed, then restart tmux.
 
 The name `.config/nvchad-custom/` has been used twice. It first held NvChad
 v2.0-style overrides that nothing had loaded since the v2.5 starter landed,
@@ -253,4 +255,4 @@ first undo write (checked on 0.12.4).
 
 ## Tmux
 
-Prefix is `Ctrl-a`. TPM manages plugins (dracula theme, vim-tmux-navigator, resurrect, continuum). Mouse support is on; history limit is 30,000 lines.
+Prefix is `Ctrl-a`. TPM manages plugins (dracula theme, resurrect, continuum). Mouse support is on; history limit is 30,000 lines.
