@@ -45,7 +45,10 @@ local plugins = {
   },
   {
     "eandrju/cellular-automaton.nvim",
-    cmd = "CellularAutomaton"
+    cmd = "CellularAutomaton",
+    keys = {
+      { "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "make it rain" },
+    },
   },
   {
     "lewis6991/spaceless.nvim",
