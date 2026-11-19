@@ -228,7 +228,7 @@ import are read.
 vim-tmux-navigator is installed on neither side. NvChad's own `<C-h/j/k/l>`
 window maps load after plugins and overrode the nvim plugin's keys, so it never
 worked here, and the tmux-side `@plugin` line was removed from `tmux.conf` in
-the release after 0.26.0. Inside nvim, `C-h/j/k/l` therefore move between nvim
+0.27.0. Inside nvim, `C-h/j/k/l` therefore move between nvim
 splits only; elsewhere tmux passes them through unchanged. Move between tmux
 panes with the prefix bindings (`Ctrl-a`, then `h` left, `l` right, `j` up, `k`
 down: `tmux.conf` has `j` and `k` the opposite way round to vim).
